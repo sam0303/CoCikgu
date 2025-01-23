@@ -3,8 +3,8 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-os.environ["OPENAI_API_KEY"] = "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"
-os.environ["LANGCHAIN_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["LANGCHAIN_API_KEY"] = ""
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 
 def summarization(texts, tables): 

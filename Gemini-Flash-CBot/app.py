@@ -5,11 +5,11 @@ from pypdf import PdfReader, PdfWriter, PdfMerger
 
 def setup_page():
     st.set_page_config(
-        page_title="⚡ Voice Chatbot",
+        page_title="⚡ CoCikgu Assistant",
         layout="centered"
     )
     
-    st.header("Chatbot using Gemini 2.0 Flash!")
+    st.header("Welcome to CoCikgu Chatbot")
     st.sidebar.header("Options", divider='rainbow')
     
     hide_menu_style = """
@@ -20,8 +20,8 @@ def setup_page():
     st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def get_choice():
-    choice = st.sidebar.radio("Choose:", ["Converse with Gemini 2.0",
-                                          "Chat with a PDF"])
+    choice = st.sidebar.radio("Choose:", ["Converse with CoCikgu",
+                                          "Explore about DSKP"])
     return choice
 
 def get_clear():
@@ -31,7 +31,7 @@ def get_clear():
 def main(client, MODEL_ID):
     choice = get_choice()
     
-    if choice == "Converse with Gemini 2.0":
+    if choice == "Converse with CoCikgu":
         st.subheader("Ask Gemini")
         clear = get_clear()
         if clear:
@@ -43,7 +43,7 @@ def main(client, MODEL_ID):
         
         if clear not in st.session_state:
             chat = client.chats.create(model=MODEL_ID, config=types.GenerateContentConfig(
-                system_instruction="You are a helpful assistant. Your answers need to be brief and concise.",
+                system_instruction="You are a helpful assistant for educators. Your answers need to be brief and concise. Think from an educator's perspective",
             ))
             prompt = st.chat_input("Enter your question here")
             if prompt:
@@ -57,8 +57,8 @@ def main(client, MODEL_ID):
                     st.sidebar.markdown(response.usage_metadata)
                 st.session_state.message += response.text
 
-    elif choice == "Chat with a PDF":
-        st.subheader("Chat with your PDF file")
+    elif choice == "Explore about DSKP":
+        st.subheader("Chat with your DSKP Doc")
         clear = get_clear()
         if clear:
             if 'message' in st.session_state:
@@ -68,7 +68,7 @@ def main(client, MODEL_ID):
             st.session_state.message = ""
         
         if clear not in st.session_state:
-            uploaded_file = st.file_uploader("Choose your PDF file", type=['pdf'], accept_multiple_files=False)
+            uploaded_file = st.file_uploader("Choose your DSKP File", type=['pdf'], accept_multiple_files=False)
             if uploaded_file:
                 # Save the uploaded file to a temporary directory
                 temp_path = os.path.join("temp", uploaded_file.name)

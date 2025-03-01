@@ -24,7 +24,7 @@ def get_choice():
 
 def list_pdf_files():
     """Lists all PDF files in the DSKP folder"""
-    folder_path = "DSKP"
+    folder_path = "Gemini-Flash-CBot/DSKP"
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)  # Create folder if it doesn't exist
     return [f for f in os.listdir(folder_path) if f.endswith('.pdf')]

@@ -32,7 +32,7 @@ def main(client, MODEL_ID):
     choice = get_choice()
     
     if choice == "Converse with CoCikgu":
-        st.subheader("Ask Gemini")
+        st.subheader("Ask Me")
         clear = get_clear()
         if clear:
             if 'message' in st.session_state:
